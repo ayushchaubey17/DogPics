@@ -3,21 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetching dog api</title>
+    <title>Fetching News</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-100">
 <h1 class="text-center font-bold text-2xl">
-    fetching dog imagess
+    fetching Current news
 </h1>
+
+
+<img src="" alt="Ayush"  class="rounded-full w-2/6 mx-auto h-24 sm:h-52">
+    
+
 
 <div class="flex">
 
     
-<button class="b mx-auto bg-blue-300 items-center text-white font-bold p-2 m-4">change</button>
+<button class="b mx-auto bg-blue-300 items-center text-white font-bold p-2 m-4 rounded-md">change news</button>
 </div>
-<img src="" alt=""  class="rounded-md w-4/6 mx-auto h-52">
-    
+
+
+
+<div class="box w-5/6 mx-auto shadow-lg shadow-zinc-700 border-2 border-sky-200 p-3 my-5 rounded-md">
+        <img src="" alt="" class="im rounded-md shadow-lg shadow-zinc-700">
+      <p class="titl font-bold mx-auto w-5/6">
+   </p>
+   <a href="" class="lnk underline cursor-pointer text-blue-700 ml-3" >visit to link..</a>
+
+</div>
+
+
+<div class="box w-5/6 mx-auto shadow-lg shadow-zinc-700 border-2 border-sky-200 p-3 my-5 rounded-md">
+    <img src="" alt="" class="im rounded-md shadow-lg shadow-zinc-700">
+  <p class="titl font-bold mx-auto w-5/6">
+</p>
+<a href="" class="lnk underline cursor-pointer text-blue-700 ml-3" >visit to link..</a>
+
+</div>
+
+
+<div class="box w-5/6 mx-auto shadow-lg shadow-zinc-700 border-2 border-sky-200 p-3 my-5 rounded-md">
+    <img src="" alt="" class="im rounded-md shadow-lg shadow-zinc-700">
+  <p class="titl font-bold mx-auto w-5/6">
+</p>
+<a href="" class="lnk underline cursor-pointer text-blue-700 ml-3" >visit to link..</a>
+
+</div>
+
+
+<div class="box w-5/6 mx-auto shadow-lg shadow-zinc-700 border-2 border-sky-200 p-3 my-5 rounded-md">
+<img src="" alt="" class="im rounded-md shadow-lg shadow-zinc-700">
+<p class="titl font-bold mx-auto w-5/6">
+</p>
+<a href="" class="lnk underline cursor-pointer text-blue-700 ml-3" >visit to link..</a>
+
+</div>
+
+
+<div class="box w-5/6 mx-auto shadow-lg shadow-zinc-700 border-2 border-sky-200 p-3 my-5 rounded-md">
+    <img src="" alt="" class="im rounded-md shadow-lg shadow-zinc-700">
+  <p class="titl font-bold mx-auto w-5/6">
+</p>
+<a href="" class="lnk underline cursor-pointer text-blue-700 ml-3" >visit to link..</a>
+
+</div>
+
+
+<div class="box w-5/6 mx-auto shadow-lg shadow-zinc-700 border-2 border-sky-200 p-3 my-5 rounded-md">
+<img src="" alt="" class="im rounded-md shadow-lg shadow-zinc-700">
+<p class="titl font-bold mx-auto w-5/6">
+</p>
+<a href="" class="lnk underline cursor-pointer text-blue-700 ml-3" >visit to link..</a>
+
+</div>
+
+
+<div class="box w-5/6 mx-auto shadow-lg shadow-zinc-700 border-2 border-sky-200 p-3 my-5 rounded-md">
+    <img src="" alt="" class="im rounded-md shadow-lg shadow-zinc-700">
+  <p class="titl font-bold mx-auto w-5/6">
+</p>
+<a href="" class="lnk underline cursor-pointer text-blue-700 ml-3" >visit to link..</a>
+
+</div>
+
+
+<div class="box w-5/6 mx-auto shadow-lg shadow-zinc-700 border-2 border-sky-200 p-3 my-5 rounded-md">
+<img src="" alt="" class="im rounded-md shadow-lg shadow-zinc-700">
+<p class="titl font-bold mx-auto w-5/6">
+</p>
+<a href="" class="lnk underline cursor-pointer text-blue-700 ml-3" >visit to link..</a>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
 
 </body>
@@ -32,20 +118,20 @@ let ak = fetch(url)
 .then(
 
 (res)=>{
-    console.log(res);
+    // console.log(res);
    return res.json();
 }
 )
 .then(
     (data)=>{
         
-            console.log(data);
+            // console.log(data);
             img.src = data.message;
     }
 )
 .catch(
     (er)=>{
-            console.log(er)
+            // console.log(er)
     });
 
 btn.addEventListener('click',()=>{
@@ -53,5 +139,42 @@ btn.addEventListener('click',()=>{
 })
 
 
+let box= document.querySelectorAll('.box');
+let im = document.querySelectorAll('.im');
+let titl = document.querySelectorAll('.titl');
+let lnk = document.querySelectorAll('.lnk');
+
+let news = 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=53f5e0b9568d49a495c2fe50a38ffb71';
+
+fetch(news)
+.then(
+    (res)=>{
+        console.log(res)
+            return res.json();
+    }
+)
+.then(
+    (data)=>{
+            let x = data.totalResults;
+            console.log(data)
+            let art = data.articles; 
+            for (let i = 0; i < x; i++) {
+                  titl[i].innerText = art[i].title;
+                  im[i].src = art[i].urlToImage;
+                  lnk[i].href = art[i].url;
+
+                
+            }
+
+    }
+)
+.catch(
+    (err)=>{
+        console.log(err);
+    }
+);
+
 </script>
+
+
 </html>
