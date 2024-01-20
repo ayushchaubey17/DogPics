@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetching dog api</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100">
+<h1 class="text-center font-bold text-2xl">
+    fetching dog imagess
+</h1>
+
+<div class="flex">
+
+    
+<button class="b mx-auto bg-blue-300 items-center text-white font-bold p-2 m-4">change</button>
+</div>
+<img src="" alt=""  class="rounded-md w-4/6 mx-auto h-52">
+    
+
+
+</body>
+
+<script>
+let img = document.querySelector("img");
+let btn = document.querySelector("button");
+
+let url = "https://dog.ceo/api/breeds/image/random";
+
+let ak = fetch(url)
+.then(
+
+(res)=>{
+    console.log(res);
+   return res.json();
+}
+)
+.then(
+    (data)=>{
+        
+            console.log(data);
+            img.src = data.message;
+    }
+)
+.catch(
+    (er)=>{
+            console.log(er)
+    });
+
+btn.addEventListener('click',()=>{
+    location.reload();
+})
+
+
+</script>
+</html>
